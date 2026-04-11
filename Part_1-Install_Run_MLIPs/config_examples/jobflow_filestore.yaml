@@ -1,0 +1,10 @@
+JOB_STORE:
+  docs_store:
+    type: JSONStore
+    paths: path/to/atomate2_env/output/output.json
+    read_only: False
+  additional_stores:
+    data:
+      type: JSONStore
+      paths: path/to/atomate2_env/output/blob_output.json
+      read_only: False
