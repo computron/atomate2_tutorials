@@ -1,0 +1,12 @@
+JOB_STORE:
+  docs_store:
+    type: MongoURIStore
+    uri: mongodb+srv://<username>:<password>@atomate2-tutorial.xyz.mongodb.net/?appName=atomate2-tutorial
+    database: atomate2_tutorial
+    collection_name: outputs
+  additional_stores:
+    data:
+      type: MongoURIStore
+      uri: mongodb+srv://<username>:<password>@atomate2-tutorial.xyz.mongodb.net/?appName=atomate2-tutorial
+      database: atomate2_tutorial
+      collection_name: outputs_blobs
