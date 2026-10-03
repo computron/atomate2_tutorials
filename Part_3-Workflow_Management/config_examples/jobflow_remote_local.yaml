@@ -1,0 +1,35 @@
+# jobflow-remote project configuration: local execution (all-in-one)
+# Place at: ~/.jfremote/jfr_tutorial.yaml
+name: jfr_tutorial
+workers:
+  local_shell:
+    type: local
+    scheduler_type: shell
+    work_dir: /Users/yourname/jfr_tutorial_run   # absolute path; create this folder first!
+    pre_run: export OMP_NUM_THREADS=2   # threads per job; 4 jobs x 2 threads = 8 cores
+    max_jobs: 4                         # max jobs running at once on this worker
+queue:
+  store:
+    type: MongoStore
+    host: localhost
+    port: 27017
+    database: jfr_tutorial_queuestore
+    collection_name: jobs
+jobstore:
+  docs_store:
+    type: MongoStore
+    host: localhost
+    port: 27017
+    database: jfr_tutorial_jobstore
+    collection_name: output
+  additional_stores:
+    data:
+      type: GridFSStore
+      host: localhost
+      port: 27017
+      database: jfr_tutorial_jobstore
+      collection_name: output_blobs
+runner:
+  delay_checkout: 5           # seconds between runner checks (default 30)
+  delay_check_run_status: 5
+  delay_advance_status: 5
